@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 public class Conexao {
 
+    //URL da cidade que vamos utilizar
     private final String url;
     private Temperatura retorno;
 
@@ -34,9 +35,12 @@ public class Conexao {
     private  Temperatura getTemperatura() throws Exception {
 
        final Temperatura sender = new Temperatura();
+       //Criamos um documento que recebe de uma conexao http utilizando um método get
         Document d = Jsoup.connect(url).userAgent("Mozilla/Gecko").get();
+        //Capturamos a cidade utilizando o id da mesma
         sender.setCidadeNome(d.getElementById("momento-localidade").text());
-        sender.setTemperatura(d.getElementsByClass("temp-topo").text().replace("°", ""));
+        //Capturamos a temperatura utilizando a classe temp-topo que só possui um item
+        sender.setTemperatura(d.getElementsByClass("temp-topo").text());
         Log.d("temperatura", d.getElementsByClass("temp-topo").text());
 
         return sender;

@@ -67,12 +67,13 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(temperatura);
 
             txt_result.setText(temperatura.getTemperatura());
+            Toast.makeText(getBaseContext(), "Cidade : "+temperatura.getCidadeNome(), Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected void finalize() throws Throwable {
             super.finalize();
-            Toast.makeText(getBaseContext(), "Teste", Toast.LENGTH_LONG).show();
+
         }
     }
 }
